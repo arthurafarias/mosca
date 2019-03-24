@@ -97,11 +97,14 @@ describe("mosca.cli", function() {
   });
 
   it("should support a config option", function(done) {
+    args.push("-v");
     args.push("--config");
     args.push("test/sample_config.js");
     startServer(done, function(server) {
-      expect(server.opts).to.have.property("port", 2883);
-      expect(server.opts).to.have.deep.property("backend.port", 3833);
+      server.on("ready", function() {
+        expect(server.opts).to.have.property("port", 2883);
+        expect(server.opts).to.have.deep.property("backend.port", 3833);
+      });
     });
   });
 
@@ -109,8 +112,10 @@ describe("mosca.cli", function() {
     args.push("-c");
     args.push(process.cwd() + "/test/sample_config.js");
     startServer(done, function(server) {
-      expect(server.opts).to.have.property("port", 2883);
-      expect(server.opts).to.have.deep.property("backend.port", 3833);
+      server.on("ready", function () {
+        expect(server.opts).to.have.property("port", 2883);
+        expect(server.opts).to.have.deep.property("backend.port", 3833);
+      });
     });
   });
 

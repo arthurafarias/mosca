@@ -14,7 +14,7 @@ var ascii = "" +
 "      +`  +.  +:  ++;++  ++'++   ++'+'  +   +. \n" +
 "      +`  +.  +:   +++    +++.   ,++'   +   +. ";
 
-console.log(ascii);
+// console.log(ascii);
 
 require("../lib/cli")(process.argv, function(err) {
   if (err) {
